@@ -1,4 +1,3 @@
-import os
 import logging
 import aiohttp
 from aiogram.types import Audio
@@ -8,6 +7,7 @@ import time
 from aiogram import Bot
 from dotenv import load_dotenv
 import tempfile
+import os
 
 load_dotenv()
 
@@ -24,16 +24,15 @@ class TranscriptionResult:
     tokens_used: int
 
     def format_markdown(self) -> str:
-        """Форматирует результат в Markdown с выделением числовых значений."""
-        text = f"""
+        return f"""
 Транскрипция:
 {self.text}
 
 Результаты:
-• Длительность аудио: {self.input_length_ms / 1000:.2f} сек
-• Время транскрипции: {self.transcription_time:.2f} сек
-• Размер аудио: {self.audio_size_bytes / (1024 * 1024):.2f} МБ
-• Токенов использовано: {self.tokens_used}
+• Длительность аудио: `{self.input_length_ms / 1000:.2f}` сек
+• Время транскрипции: `{self.transcription_time:.2f}` сек
+• Размер аудио: `{self.audio_size_bytes / (1024 * 1024):.2f}` МБ
+• Токенов использовано: `{self.tokens_used}`
 
 """
         return text

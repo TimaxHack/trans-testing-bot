@@ -19,7 +19,7 @@ async def main():
         return
     bot = Bot(token=config.bot_token)
     dp = Dispatcher(storage=MemoryStorage())
-    register_handlers(dp, config) # Pass the config instance
+    register_handlers(dp, config)
 
     try:
         logger.info("Запуск бота...")
